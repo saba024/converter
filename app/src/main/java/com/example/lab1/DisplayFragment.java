@@ -65,6 +65,8 @@ public class DisplayFragment extends Fragment {
         clipboardManager = (ClipboardManager)getContext().getSystemService(Context.CLIPBOARD_SERVICE);
         layout.findViewById(R.id.exchange_button).setOnClickListener(item -> mainViewModel.ReplaceValues());
         layout.findViewById(R.id.convert_button).setOnClickListener(item -> mainViewModel.convert());
+        layout.findViewById(R.id.save_input_button).setOnClickListener(item -> mainViewModel.saveInBuffer(1, clipboardManager));
+        layout.findViewById(R.id.save_output_button).setOnClickListener(item -> mainViewModel.saveInBuffer(2, clipboardManager));
         return layout;
     }
 }

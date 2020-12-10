@@ -20,6 +20,7 @@ public class MainViewModel extends AndroidViewModel
     private final MutableLiveData<String> inputEditLiveData = new MutableLiveData<>("");
     private final MutableLiveData<String> outputEditLiveData = new MutableLiveData<>("");
 
+
     public MainViewModel(@NonNull Application application) {
         super(application);
     }
@@ -142,6 +143,22 @@ public class MainViewModel extends AndroidViewModel
             Toast toast = Toast.makeText(getApplication(), "Empty set", Toast.LENGTH_SHORT);
             toast.show();
         }
+
+    }
+    
+    public void saveInBuffer(int field, ClipboardManager clipboardManager) {
+        switch (field) {
+            case 1:
+                ClipData clipData = ClipData.newPlainText("text", inputEditLiveData.getValue());
+                clipboardManager.setPrimaryClip(clipData);
+                break;
+            case 2:
+                clipData = ClipData.newPlainText("text", outputEditLiveData.getValue());
+                clipboardManager.setPrimaryClip(clipData);
+                break;
+        }
+        Toast toast = Toast.makeText(getApplication(), "Save", Toast.LENGTH_SHORT);
+        toast.show();
 
     }
 }
